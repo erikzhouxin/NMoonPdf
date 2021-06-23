@@ -1,0 +1,5 @@
+# PDF读取项目
+bin
+obj
+*.user
+*.suo

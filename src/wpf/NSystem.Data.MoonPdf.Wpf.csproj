@@ -1,0 +1,88 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+	<PropertyGroup>
+		<TargetFrameworks>net5.0-windows;net45;netcoreapp3.1;</TargetFrameworks>
+		<Description>PDF操作库,基于MoonPdf</Description>
+		<AssemblyName>NSystem.Data.MoonPdf.Wpf</AssemblyName>
+		<RootNamespace>MoonPdfLib</RootNamespace>
+		<AssemblyTitle>NSystem.Data.MoonPdf.Wpf</AssemblyTitle>
+		<SignAssembly>true</SignAssembly>
+		<LangVersion>latest</LangVersion>
+		<PackageReleaseNotes>Copyright © 2020</PackageReleaseNotes>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+		<UseWPF>true</UseWPF>
+		<UseWindowsForms>true</UseWindowsForms>
+		<Version>1.0.0</Version>
+		<AssemblyVersion>1.1.2.2580</AssemblyVersion>
+		<FileVersion>1.1.2.2580</FileVersion>
+		<NeutralLanguage />
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|net45'">
+		<DefineConstants>TRACE;DEBUG;NETFrame;NET45</DefineConstants>
+		<DocumentationFile>bin\MoonPdfLib.Net45.xml</DocumentationFile>
+		<OutputPath>bin</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|netcoreapp3.1'">
+		<DefineConstants>TRACE;DEBUG;NET31;NETFx;NETCore</DefineConstants>
+		<DocumentationFile>bin\MoonPdfLib.Net31.xml</DocumentationFile>
+		<OutputPath>bin</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|net5.0-windows'">
+		<DefineConstants>TRACE;DEBUG;NET50</DefineConstants>
+		<DocumentationFile>bin\MoonPdfLib.Net50.xml</DocumentationFile>
+		<OutputPath>bin</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net45'">
+		<DefineConstants>TRACE;NETFrame;NET45</DefineConstants>
+		<DocumentationFile>bin\MoonPdfLib.Net45.xml</DocumentationFile>
+		<OutputPath>bin</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|netcoreapp3.1'">
+		<DefineConstants>TRACE;NETFx;NETCore</DefineConstants>
+		<DocumentationFile>bin\MoonPdfLib.Net31.xml</DocumentationFile>
+		<OutputPath>bin</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net5.0-windows'">
+		<DefineConstants>TRACE;NET50</DefineConstants>
+		<DocumentationFile>bin\MoonPdfLib.Net50.xml</DocumentationFile>
+		<OutputPath>bin</OutputPath>
+	</PropertyGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net45'">
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+		<Reference Include="PresentationCore" />
+		<Reference Include="PresentationFramework" />
+		<Reference Include="ReachFramework" />
+		<Reference Include="System.Drawing" />
+		<Reference Include="System.Reflection" />
+		<Reference Include="System.Printing" />
+		<PackageReference Include="System.Runtime" Version="4.3.1" />
+		<Reference Include="System.Windows.Forms" />
+		<Reference Include="System.Xaml" />
+		<Reference Include="WindowsBase" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+		<PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.7.0" />
+		<PackageReference Include="System.Runtime" Version="4.3.1" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0-windows'">
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+		<PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.7.0" />
+		<PackageReference Include="System.Runtime" Version="4.3.1" />
+	</ItemGroup>
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy $(ProjectDir)..\beans\libmupdf.dll $(TargetDir) /Y" />
+	</Target>
+	<PropertyGroup>
+		<TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetMyPackageFiles</TargetsForTfmSpecificBuildOutput>
+	</PropertyGroup>
+	<Target Name="GetMyPackageFiles">
+		<ItemGroup>
+			<BuildOutputInPackage Include="$(OutputPath)libmupdf.dll" />
+		</ItemGroup>
+	</Target>
+</Project>

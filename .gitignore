@@ -1,0 +1,11 @@
+.vs
+.vscode
+.publishes
+.svn
+.git
+
+bin
+obj
+
+*.suo
+*.user
