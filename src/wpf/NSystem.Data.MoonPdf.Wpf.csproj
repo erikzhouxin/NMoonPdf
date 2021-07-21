@@ -11,12 +11,12 @@
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<UseWPF>true</UseWPF>
 		<UseWindowsForms>true</UseWindowsForms>
-		<Version>1.0.0</Version>
-		<AssemblyVersion>1.1.2.2580</AssemblyVersion>
-		<FileVersion>1.1.2.2580</FileVersion>
-		<NeutralLanguage />
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<Version>1.0.1</Version>
+		<EmbedAllSources>true</EmbedAllSources>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|net45'">
 		<DefineConstants>TRACE;DEBUG;NETFrame;NET45</DefineConstants>
