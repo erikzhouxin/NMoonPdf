@@ -74,15 +74,34 @@
 		<PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.7.0" />
 		<PackageReference Include="System.Runtime" Version="4.3.1" />
 	</ItemGroup>
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="xcopy $(ProjectDir)..\beans\libmupdf.dll $(TargetDir) /Y" />
-	</Target>
+	<ItemGroup>
+	  <Compile Update="Properties\Resources.Designer.cs">
+	    <DesignTime>True</DesignTime>
+	    <AutoGen>True</AutoGen>
+	    <DependentUpon>Resources.resx</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <EmbeddedResource Update="Properties\Resources.resx">
+	    <Generator>ResXFileCodeGenerator</Generator>
+	    <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+	  </EmbeddedResource>
+	</ItemGroup>
+	<!--<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="xcopy $(ProjectDir)..\beans\x86\libmupdf.dll $(TargetDir)x86\ /Y" />
+		<Exec Command="xcopy $(ProjectDir)..\beans\x64\libmupdf.dll $(TargetDir)x64\ /Y" />
+	</Target>--><!--
 	<PropertyGroup>
 		<TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetMyPackageFiles</TargetsForTfmSpecificBuildOutput>
 	</PropertyGroup>
 	<Target Name="GetMyPackageFiles">
 		<ItemGroup>
-			<BuildOutputInPackage Include="$(OutputPath)libmupdf.dll" />
+			<TfmSpecificPackageFile Include="$(OutputPath)x86\libmupdf.dll">
+				<PackagePath>lib\$(TargetFramework)\x86\</PackagePath>
+			</TfmSpecificPackageFile>
+			<TfmSpecificPackageFile Include="$(OutputPath)x64\libmupdf.dll">
+				<PackagePath>lib\$(TargetFramework)\x64\</PackagePath>
+			</TfmSpecificPackageFile>
 		</ItemGroup>
-	</Target>
+	</Target>-->
 </Project>

@@ -21,7 +21,7 @@ namespace MoonPdfViewer
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private Lazy<HelpContent> _helpContent = new(()=>new HelpContent());
+        private Lazy<HelpContent> _helpContent = new(() => null);
         /// <summary>
         /// 构造
         /// </summary>
@@ -37,6 +37,12 @@ namespace MoonPdfViewer
         public object PdfViewer
         {
             get => _helpContent.Value;
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _helpContent = new(() => new HelpContent());
+            OnPropertyChanged(nameof(PdfViewer));
         }
         #region // 实现MVVM
         /// <summary>
@@ -59,10 +65,5 @@ namespace MoonPdfViewer
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
-
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

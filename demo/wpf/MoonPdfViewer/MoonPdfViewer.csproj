@@ -10,11 +10,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\src\wpf\NSystem.Data.MoonPdf.Wpf.csproj" />
 	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Resources\" />
-	</ItemGroup>
-
 	<ItemGroup>
 		<None Update="Resources\HelpPdf.docx">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -23,16 +18,4 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
-
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="xcopy $(ProjectDir)..\..\..\src\beans\libmupdf.dll $(TargetDir) /Y" />
-	</Target>
-	<PropertyGroup>
-		<TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetMyPackageFiles</TargetsForTfmSpecificBuildOutput>
-	</PropertyGroup>
-	<Target Name="GetMyPackageFiles">
-		<ItemGroup>
-			<BuildOutputInPackage Include="$(OutputPath)libmupdf.dll" />
-		</ItemGroup>
-	</Target>
 </Project>
