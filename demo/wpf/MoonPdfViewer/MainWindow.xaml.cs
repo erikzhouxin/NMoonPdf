@@ -42,6 +42,7 @@ namespace MoonPdfViewer
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _helpContent = new(() => new HelpContent());
+            var help = _helpContent.Value;
             OnPropertyChanged(nameof(PdfViewer));
         }
         #region // 实现MVVM

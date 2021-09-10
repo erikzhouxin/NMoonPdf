@@ -307,10 +307,10 @@ namespace MoonPdfLib.MuPdf
             static NativeMethods()
             {
                 var path = Path.GetFullPath(DLL);
-                if (!File.Exists(path))
-                {
-                    File.WriteAllBytes(path, Environment.Is64BitProcess ? Properties.Resources.LibMuPdfx64 : Properties.Resources.LibMuPdfx86);
-                }
+                //if (!File.Exists(path))
+                //{
+                //    File.WriteAllBytes(path, Environment.Is64BitProcess ? Properties.Resources.LibMuPdfx64 : Properties.Resources.LibMuPdfx86);
+                //}
                 LoadLibraryA(path);
             }
         }

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--Automatically generated-->
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata minClientVersion="2.12">
+		<id>NSystem.Data.MoonPdf.Wpf</id>
+		<title>NSystem.Data.MoonPdf.Wpf</title>
+		<version>2021.9.10</version>
+		<authors>ErikZhouXin</authors>
+		<copyright>Copyright © 2020</copyright>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<license type="expression">MIT</license>
+		<repository type="git" url="https://gitee.com/erikzhouxin/nmoonpdf.git" />
+		<summary>PDF操作库,基于MoonPdf</summary>
+		<tags>pdf;moonpdf</tags>
+		<description>PDF操作库,基于MoonPdf</description>
+	</metadata>
+	<files>
+		<file src="..\beans\x86\libmupdf.dll" target="runtimes\win-x86\native\libmupdf.dll" />
+		<file src="..\beans\x64\libmupdf.dll" target="runtimes\win-x64\native\libmupdf.dll" />
+		<file src="..\beans\arm\libmupdf.dll" target="runtimes\win-arm\native\libmupdf.dll" />
+		<file src="..\beans\arm64\libmupdf.dll" target="runtimes\win-arm64\native\libmupdf.dll" />
+		<file src="..\beans\x86\libmupdf.dll" target="runtimes\win10-x86\native\libmupdf.dll" />
+		<file src="..\beans\x64\libmupdf.dll" target="runtimes\win10-x64\native\libmupdf.dll" />
+		<file src="..\beans\arm\libmupdf.dll" target="runtimes\win10-arm\native\libmupdf.dll" />
+		<file src="..\beans\arm64\libmupdf.dll" target="runtimes\win10-arm64\native\libmupdf.dll" />
+		<file src=".\bin\net5.0-windows\NSystem.Data.MoonPdf.Wpf.dll" target="lib\net5.0\NSystem.Data.MoonPdf.Wpf.dll" />
+		<file src=".\bin\net45\NSystem.Data.MoonPdf.Wpf.dll" target="lib\net45\NSystem.Data.MoonPdf.Wpf.dll" />
+		<file src=".\bin\netcoreapp3.1\NSystem.Data.MoonPdf.Wpf.dll" target="lib\netcoreapp3.1\NSystem.Data.MoonPdf.Wpf.dll" />
+	</files>
+</package>
