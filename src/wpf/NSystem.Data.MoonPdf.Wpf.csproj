@@ -1,103 +1,79 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 	<PropertyGroup>
-		<TargetFrameworks>net5.0-windows;net45;netcoreapp3.1;</TargetFrameworks>
+		<TargetFrameworks>net5.0-windows;netcoreapp3.1;net45;</TargetFrameworks>
 		<Description>PDF操作库,基于MoonPdf</Description>
 		<AssemblyName>NSystem.Data.MoonPdf.Wpf</AssemblyName>
-		<RootNamespace>MoonPdfLib</RootNamespace>
-		<AssemblyTitle>NSystem.Data.MoonPdf.Wpf</AssemblyTitle>
+		<RootNamespace>System.Data.MoonPdf.Wpf</RootNamespace>
 		<SignAssembly>true</SignAssembly>
 		<LangVersion>latest</LangVersion>
-		<PackageReleaseNotes>Copyright © 2020</PackageReleaseNotes>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<UseWPF>true</UseWPF>
 		<UseWindowsForms>true</UseWindowsForms>
-		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		<Version>2021.9.10</Version>
-		<AssemblyVersion>2021.9.10.618</AssemblyVersion>
-		<FileVersion>2021.9.10.618</FileVersion>
+		<PackageReleaseNotes>Copyright © 2020</PackageReleaseNotes>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<Version>2021.9.15</Version>
+		<AssemblyVersion>2021.9.15.623</AssemblyVersion>
+		<FileVersion>2021.9.15.623</FileVersion>
+		<PackageId>NSystem.Data.MoonPdf.Wpf</PackageId>
+		<PackageTags>PDF;MoonPdf</PackageTags>
+		<AssemblyTitle>PDF操作库,基于MoonPdf</AssemblyTitle>
+		<Authors>ErikZhouXin</Authors>
+		<Product>PDF操作库,基于MoonPdf</Product>
+		<Copyright>Copyright © 2020</Copyright>
+		<NeutralLanguage>zh</NeutralLanguage>
 		<EmbedAllSources>true</EmbedAllSources>
+		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://gitee.com/erikzhouxin/nmoonpdf</RepositoryUrl>
-		<NuspecFile>NSystem.Data.MoonPdf.Wpf.nuspec</NuspecFile>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|net45'">
 		<DefineConstants>TRACE;DEBUG;NETFrame;NET45</DefineConstants>
-		<DocumentationFile>bin\net45\NSystem.Data.MoonPdf.Wpf.xml</DocumentationFile>
-		<OutputPath>bin</OutputPath>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|netcoreapp3.1'">
 		<DefineConstants>TRACE;DEBUG;NET31;NETFx;NETCore</DefineConstants>
-		<DocumentationFile>bin\netcoreapp3.1\NSystem.Data.MoonPdf.Wpf.xml</DocumentationFile>
-		<OutputPath>bin</OutputPath>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|net5.0-windows'">
 		<DefineConstants>TRACE;DEBUG;NET50</DefineConstants>
-		<DocumentationFile>bin\net5.0-windows\NSystem.Data.MoonPdf.Wpf.xml</DocumentationFile>
-		<OutputPath>bin</OutputPath>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net45'">
 		<DefineConstants>TRACE;NETFrame;NET45</DefineConstants>
-		<DocumentationFile>bin\net45\NSystem.Data.MoonPdf.Wpf.xml</DocumentationFile>
-		<OutputPath>bin</OutputPath>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|netcoreapp3.1'">
 		<DefineConstants>TRACE;NETFx;NETCore</DefineConstants>
-		<DocumentationFile>bin\netcoreapp3.1\NSystem.Data.MoonPdf.Wpf.xml</DocumentationFile>
-		<OutputPath>bin</OutputPath>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net5.0-windows'">
 		<DefineConstants>TRACE;NET50</DefineConstants>
-		<DocumentationFile>bin\net5.0-windows\NSystem.Data.MoonPdf.Wpf.xml</DocumentationFile>
-		<OutputPath>bin</OutputPath>
 	</PropertyGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net45'">
-		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<Reference Include="PresentationCore" />
-		<Reference Include="PresentationFramework" />
-		<Reference Include="ReachFramework" />
-		<Reference Include="System.Drawing" />
-		<Reference Include="System.Reflection" />
-		<Reference Include="System.Printing" />
-		<PackageReference Include="System.Runtime" Version="4.3.1" />
-		<Reference Include="System.Windows.Forms" />
-		<Reference Include="System.Xaml" />
-		<Reference Include="WindowsBase" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.7.0" />
-		<PackageReference Include="System.Runtime" Version="4.3.1" />
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0-windows'">
-		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-		<PackageReference Include="System.Reflection.Emit.Lightweight" Version="4.7.0" />
-		<PackageReference Include="System.Runtime" Version="4.3.1" />
 	</ItemGroup>
 	<ItemGroup Condition=" '$(RuntimeIdentifier)' == '' AND '$(OS)' == 'Windows_NT' ">
-		<Content Include="..\beans\x86\libmupdf.dll">
+		<None Include="..\beans\x86\libmupdf.dll">
 			<Link>runtimes\win-x86\native\libmupdf.dll</Link>
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<Pack>false</Pack>
-		</Content>
-		<Content Include="..\beans\x64\libmupdf.dll">
+			<Pack>true</Pack>
+			<PackagePath>runtimes\win-x86\native\libmupdf.dll</PackagePath>
+		</None>
+		<None Include="..\beans\x64\libmupdf.dll">
 			<Link>runtimes\win-x64\native\libmupdf.dll</Link>
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<Pack>false</Pack>
-		</Content>
-		<Content Include="..\beans\arm\libmupdf.dll">
+			<Pack>true</Pack>
+			<PackagePath>runtimes\win-x64\native\libmupdf.dll</PackagePath>
+		</None>
+		<None Include="..\beans\arm\libmupdf.dll">
 			<Link>runtimes\win-arm\native\libmupdf.dll</Link>
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<Pack>false</Pack>
-		</Content>
-		<Content Include="..\beans\arm64\libmupdf.dll">
+			<Pack>true</Pack>
+			<PackagePath>runtimes\win-arm\native\libmupdf.dll</PackagePath>
+		</None>
+		<None Include="..\beans\arm64\libmupdf.dll">
 			<Link>runtimes\win-arm64\native\libmupdf.dll</Link>
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-			<Pack>false</Pack>
-		</Content>
+			<Pack>true</Pack>
+			<PackagePath>runtimes\win-arm64\native\libmupdf.dll</PackagePath>
+		</None>
 	</ItemGroup>
 </Project>

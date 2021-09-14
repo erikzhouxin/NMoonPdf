@@ -30,12 +30,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-using MoonPdfLib.MuPdf;
-using MoonPdfLib.Virtualizing;
-using MoonPdfLib.Helper;
 using System.IO;
 
-namespace MoonPdfLib
+namespace System.Data.MoonPdf.Wpf
 {
     internal partial class ContinuousMoonPdfPanel : UserControl, IMoonPdfPanel
     {

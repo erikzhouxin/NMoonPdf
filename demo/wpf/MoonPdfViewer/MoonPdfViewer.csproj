@@ -8,8 +8,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\src\wpf\NSystem.Data.MoonPdf.Wpf.csproj" />
+	  <PackageReference Include="NSystem.Data.MoonPdf.Wpf" Version="2021.9.15" />
 	</ItemGroup>
+
 	<ItemGroup>
 		<None Update="Resources\HelpPdf.docx">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

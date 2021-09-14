@@ -1,21 +1,3 @@
-/*! MoonPdfLib - Provides a WPF user control to display PDF files
-Copyright (C) 2013  (see AUTHORS file)
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-!*/
-using MoonPdfLib.Helper;
-using MoonPdfLib.MuPdf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,26 +12,26 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MoonPdfLib
+namespace System.Data.MoonPdf.Wpf
 {
-	internal partial class SinglePageMoonPdfPanel : UserControl, IMoonPdfPanel
-	{
-		private MoonPdfPanel parent;
-		private ScrollViewer scrollViewer;
-		private PdfImageProvider imageProvider;
-		private int currentPageIndex = 0; // starting at 0
+    internal partial class SinglePageMoonPdfPanel : UserControl, IMoonPdfPanel
+    {
+        private MoonPdfPanel parent;
+        private ScrollViewer scrollViewer;
+        private PdfImageProvider imageProvider;
+        private int currentPageIndex = 0; // starting at 0
 
-		public SinglePageMoonPdfPanel(MoonPdfPanel parent)
-		{
-			InitializeComponent();
-			this.parent = parent;
-			this.SizeChanged += SinglePageMoonPdfPanel_SizeChanged;
-		}
+        public SinglePageMoonPdfPanel(MoonPdfPanel parent)
+        {
+            InitializeComponent();
+            this.parent = parent;
+            this.SizeChanged += SinglePageMoonPdfPanel_SizeChanged;
+        }
 
-		void SinglePageMoonPdfPanel_SizeChanged(object sender, SizeChangedEventArgs e)
-		{
-			this.scrollViewer = VisualTreeHelperEx.FindChild<ScrollViewer>(this);
-		}
+        void SinglePageMoonPdfPanel_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            this.scrollViewer = VisualTreeHelperEx.FindChild<ScrollViewer>(this);
+        }
 
         public void Load(IPdfSource source, string password = null)
         {
@@ -80,133 +62,133 @@ namespace MoonPdfLib
             this.imageProvider = null;
         }
 
-		ScrollViewer IMoonPdfPanel.ScrollViewer
-		{
-			get { return this.scrollViewer; }
-		}
+        ScrollViewer IMoonPdfPanel.ScrollViewer
+        {
+            get { return this.scrollViewer; }
+        }
 
-		UserControl IMoonPdfPanel.Instance
-		{
-			get { return this; }
-		}
+        UserControl IMoonPdfPanel.Instance
+        {
+            get { return this; }
+        }
 
-		void IMoonPdfPanel.GotoPage(int pageNumber)
-		{
-			currentPageIndex = pageNumber - 1;
-			this.SetItemsSource();
+        void IMoonPdfPanel.GotoPage(int pageNumber)
+        {
+            currentPageIndex = pageNumber - 1;
+            this.SetItemsSource();
 
-			if( this.scrollViewer != null )
-				this.scrollViewer.ScrollToTop();
-		}
+            if (this.scrollViewer != null)
+                this.scrollViewer.ScrollToTop();
+        }
 
-		void IMoonPdfPanel.GotoPreviousPage()
-		{
-			var prevPageIndex = PageHelper.GetPreviousPageIndex(this.currentPageIndex, this.parent.ViewType);
+        void IMoonPdfPanel.GotoPreviousPage()
+        {
+            var prevPageIndex = PageHelper.GetPreviousPageIndex(this.currentPageIndex, this.parent.ViewType);
 
-			if (prevPageIndex == -1)
-				return;
+            if (prevPageIndex == -1)
+                return;
 
-			this.currentPageIndex = prevPageIndex;
+            this.currentPageIndex = prevPageIndex;
 
-			this.SetItemsSource();
+            this.SetItemsSource();
 
-			if (this.scrollViewer != null)
-				this.scrollViewer.ScrollToTop();
-		}
+            if (this.scrollViewer != null)
+                this.scrollViewer.ScrollToTop();
+        }
 
-		void IMoonPdfPanel.GotoNextPage()
-		{
-			var nextPageIndex = PageHelper.GetNextPageIndex(this.currentPageIndex, this.parent.TotalPages, this.parent.ViewType);
+        void IMoonPdfPanel.GotoNextPage()
+        {
+            var nextPageIndex = PageHelper.GetNextPageIndex(this.currentPageIndex, this.parent.TotalPages, this.parent.ViewType);
 
-			if (nextPageIndex == -1)
-				return;
+            if (nextPageIndex == -1)
+                return;
 
-			this.currentPageIndex = nextPageIndex;
+            this.currentPageIndex = nextPageIndex;
 
-			this.SetItemsSource();
+            this.SetItemsSource();
 
-			if( this.scrollViewer != null )
-				this.scrollViewer.ScrollToTop();
-		}
+            if (this.scrollViewer != null)
+                this.scrollViewer.ScrollToTop();
+        }
 
-		private void SetItemsSource()
-		{
-			var startIndex = PageHelper.GetVisibleIndexFromPageIndex( this.currentPageIndex, this.parent.ViewType);
-			this.itemsControl.ItemsSource = this.imageProvider.FetchRange(startIndex, this.parent.GetPagesPerRow()).FirstOrDefault();
-		}
+        private void SetItemsSource()
+        {
+            var startIndex = PageHelper.GetVisibleIndexFromPageIndex(this.currentPageIndex, this.parent.ViewType);
+            this.itemsControl.ItemsSource = this.imageProvider.FetchRange(startIndex, this.parent.GetPagesPerRow()).FirstOrDefault();
+        }
 
-		public int GetCurrentPageIndex(ViewType viewType)
-		{
-			return this.currentPageIndex;
-		}
+        public int GetCurrentPageIndex(ViewType viewType)
+        {
+            return this.currentPageIndex;
+        }
 
-		#region Zoom specific code
-		public float CurrentZoom
-		{
-			get
-			{
-				if (this.imageProvider != null)
-					return this.imageProvider.Settings.ZoomFactor;
+        #region Zoom specific code
+        public float CurrentZoom
+        {
+            get
+            {
+                if (this.imageProvider != null)
+                    return this.imageProvider.Settings.ZoomFactor;
 
-				return 1.0f;
-			}
-		}
+                return 1.0f;
+            }
+        }
 
-		public void ZoomToWidth()
-		{
-			var scrollBarWidth = this.scrollViewer.ComputedVerticalScrollBarVisibility == System.Windows.Visibility.Visible ? SystemParameters.VerticalScrollBarWidth : 0;
-			var zoomFactor = (this.parent.ActualWidth - scrollBarWidth) / this.parent.PageRowBounds[this.currentPageIndex].SizeIncludingOffset.Width;
-			var pageBound = this.parent.PageRowBounds[this.currentPageIndex];
+        public void ZoomToWidth()
+        {
+            var scrollBarWidth = this.scrollViewer.ComputedVerticalScrollBarVisibility == System.Windows.Visibility.Visible ? SystemParameters.VerticalScrollBarWidth : 0;
+            var zoomFactor = (this.parent.ActualWidth - scrollBarWidth) / this.parent.PageRowBounds[this.currentPageIndex].SizeIncludingOffset.Width;
+            var pageBound = this.parent.PageRowBounds[this.currentPageIndex];
 
-			if (scrollBarWidth == 0 && ((pageBound.Size.Height * zoomFactor) + pageBound.VerticalOffset) >= this.parent.ActualHeight)
-				scrollBarWidth += SystemParameters.VerticalScrollBarWidth;
+            if (scrollBarWidth == 0 && ((pageBound.Size.Height * zoomFactor) + pageBound.VerticalOffset) >= this.parent.ActualHeight)
+                scrollBarWidth += SystemParameters.VerticalScrollBarWidth;
 
-			scrollBarWidth += 2; // Magic number, sorry :)
-			zoomFactor = (this.parent.ActualWidth - scrollBarWidth) / this.parent.PageRowBounds[this.currentPageIndex].SizeIncludingOffset.Width;
+            scrollBarWidth += 2; // Magic number, sorry :)
+            zoomFactor = (this.parent.ActualWidth - scrollBarWidth) / this.parent.PageRowBounds[this.currentPageIndex].SizeIncludingOffset.Width;
 
-			ZoomInternal(zoomFactor);
-		}
+            ZoomInternal(zoomFactor);
+        }
 
-		public void ZoomToHeight()
-		{
-			var scrollBarHeight = this.scrollViewer.ComputedHorizontalScrollBarVisibility == System.Windows.Visibility.Visible ? SystemParameters.HorizontalScrollBarHeight : 0;
-			var zoomFactor = (this.parent.ActualHeight - scrollBarHeight) / this.parent.PageRowBounds[this.currentPageIndex].SizeIncludingOffset.Height;
-			var pageBound = this.parent.PageRowBounds[this.currentPageIndex];
+        public void ZoomToHeight()
+        {
+            var scrollBarHeight = this.scrollViewer.ComputedHorizontalScrollBarVisibility == System.Windows.Visibility.Visible ? SystemParameters.HorizontalScrollBarHeight : 0;
+            var zoomFactor = (this.parent.ActualHeight - scrollBarHeight) / this.parent.PageRowBounds[this.currentPageIndex].SizeIncludingOffset.Height;
+            var pageBound = this.parent.PageRowBounds[this.currentPageIndex];
 
-			if (scrollBarHeight == 0 && ((pageBound.Size.Width * zoomFactor) + pageBound.HorizontalOffset) >= this.parent.ActualWidth)
-				scrollBarHeight += SystemParameters.HorizontalScrollBarHeight;
+            if (scrollBarHeight == 0 && ((pageBound.Size.Width * zoomFactor) + pageBound.HorizontalOffset) >= this.parent.ActualWidth)
+                scrollBarHeight += SystemParameters.HorizontalScrollBarHeight;
 
-			zoomFactor = (this.parent.ActualHeight - scrollBarHeight) / this.parent.PageRowBounds[this.currentPageIndex].SizeIncludingOffset.Height;
+            zoomFactor = (this.parent.ActualHeight - scrollBarHeight) / this.parent.PageRowBounds[this.currentPageIndex].SizeIncludingOffset.Height;
 
-			ZoomInternal(zoomFactor);
-		}
+            ZoomInternal(zoomFactor);
+        }
 
-		public void ZoomIn()
-		{
-			ZoomInternal(this.CurrentZoom + this.parent.ZoomStep);
-		}
+        public void ZoomIn()
+        {
+            ZoomInternal(this.CurrentZoom + this.parent.ZoomStep);
+        }
 
-		public void ZoomOut()
-		{
-			ZoomInternal( this.CurrentZoom - this.parent.ZoomStep);
-		}
+        public void ZoomOut()
+        {
+            ZoomInternal(this.CurrentZoom - this.parent.ZoomStep);
+        }
 
-		public void Zoom(double zoomFactor)
-		{
-			this.ZoomInternal(zoomFactor);
-		}
+        public void Zoom(double zoomFactor)
+        {
+            this.ZoomInternal(zoomFactor);
+        }
 
-		private void ZoomInternal(double zoomFactor)
-		{
-			if (zoomFactor > this.parent.MaxZoomFactor)
-				zoomFactor = this.parent.MaxZoomFactor;
-			else if (zoomFactor < this.parent.MinZoomFactor)
-				zoomFactor = this.parent.MinZoomFactor;
+        private void ZoomInternal(double zoomFactor)
+        {
+            if (zoomFactor > this.parent.MaxZoomFactor)
+                zoomFactor = this.parent.MaxZoomFactor;
+            else if (zoomFactor < this.parent.MinZoomFactor)
+                zoomFactor = this.parent.MinZoomFactor;
 
-			this.imageProvider.Settings.ZoomFactor = (float)zoomFactor;
+            this.imageProvider.Settings.ZoomFactor = (float)zoomFactor;
 
-			this.SetItemsSource();
-		}
-		#endregion
-	}
+            this.SetItemsSource();
+        }
+        #endregion
+    }
 }
