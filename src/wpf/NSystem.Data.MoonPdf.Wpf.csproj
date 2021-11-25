@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 	<PropertyGroup>
-		<TargetFrameworks>net5.0-windows;netcoreapp3.1;net45;</TargetFrameworks>
+		<TargetFrameworks>net6.0-windows;net5.0-windows;netcoreapp3.1;net45;</TargetFrameworks>
 		<Description>PDF操作库,基于MoonPdf</Description>
 		<AssemblyName>NSystem.Data.MoonPdf.Wpf</AssemblyName>
 		<RootNamespace>System.Data.MoonPdf.Wpf</RootNamespace>
@@ -11,9 +11,9 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<PackageReleaseNotes>Copyright © 2020</PackageReleaseNotes>
 		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-		<Version>2021.9.15</Version>
-		<AssemblyVersion>2021.9.15.623</AssemblyVersion>
-		<FileVersion>2021.9.15.623</FileVersion>
+		<Version>2021.11.11</Version>
+		<AssemblyVersion>2021.11.11.623</AssemblyVersion>
+		<FileVersion>2021.11.11.623</FileVersion>
 		<PackageId>NSystem.Data.MoonPdf.Wpf</PackageId>
 		<PackageTags>PDF;MoonPdf</PackageTags>
 		<AssemblyTitle>PDF操作库,基于MoonPdf</AssemblyTitle>
@@ -21,7 +21,6 @@
 		<Product>PDF操作库,基于MoonPdf</Product>
 		<Copyright>Copyright © 2020</Copyright>
 		<NeutralLanguage>zh</NeutralLanguage>
-		<EmbedAllSources>true</EmbedAllSources>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://gitee.com/erikzhouxin/nmoonpdf</RepositoryUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -35,6 +34,9 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|net5.0-windows'">
 		<DefineConstants>TRACE;DEBUG;NET50</DefineConstants>
 	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|net6.0-windows'">
+		<DefineConstants>TRACE;DEBUG;NET60</DefineConstants>
+	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net45'">
 		<DefineConstants>TRACE;NETFrame;NET45</DefineConstants>
 	</PropertyGroup>
@@ -44,11 +46,16 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net5.0-windows'">
 		<DefineConstants>TRACE;NET50</DefineConstants>
 	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net6.0-windows'">
+		<DefineConstants>TRACE;NET60</DefineConstants>
+	</PropertyGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net45'">
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net5.0-windows'">
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
 	</ItemGroup>
 	<ItemGroup Condition=" '$(RuntimeIdentifier)' == '' AND '$(OS)' == 'Windows_NT' ">
 		<None Include="..\beans\x86\libmupdf.dll">
