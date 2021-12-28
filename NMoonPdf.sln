@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSystem.Data.MoonPdf.Wpf", "src\wpf\NSystem.Data.MoonPdf.Wpf.csproj", "{CD136656-30F1-41ED-A814-A17842F3D1AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NSystem.Data.MoonPdf.Wpf", "src\wpf\System.Data.MoonPdf.Wpf.csproj", "{CD136656-30F1-41ED-A814-A17842F3D1AB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MoonPdfViewer", "demo\wpf\MoonPdfViewer\MoonPdfViewer.csproj", "{356DEBF0-8FB9-41F3-BAA1-313719168AB0}"
 EndProject
