@@ -25,8 +25,15 @@ namespace MoonPdfViewer
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            var path = System.IO.Path.GetFullPath("Resources/HelpPdf.pdf");
-            this.PnlMoonPdf.OpenFile(path);
+            try
+            {
+                var path = System.IO.Path.GetFullPath("Resources/HelpPdf.pdf");
+                this.PnlMoonPdf.OpenFile(path);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

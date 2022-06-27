@@ -2,13 +2,14 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetFramework>net4</TargetFramework>
 		<UseWPF>true</UseWPF>
 		<LangVersion>latest</LangVersion>
+		<PlatformTarget>x86</PlatformTarget>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <PackageReference Include="NSystem.Data.MoonPdf.Wpf" Version="2021.9.15" />
+		<PackageReference Include="NSystem.Data.MoonPdf.Wpf" Version="2022.6.6" />
 	</ItemGroup>
 
 	<ItemGroup>
