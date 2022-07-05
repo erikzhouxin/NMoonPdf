@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 	<PropertyGroup>
-		<TargetFrameworks>net6.0-windows;net5.0-windows;netcoreapp3.1;net45;net4;</TargetFrameworks>
+		<TargetFrameworks>net6.0-windows;net5.0-windows;netcoreapp3.1;net45;net40;</TargetFrameworks>
 		<Description>PDF操作库,基于MoonPdf</Description>
 		<AssemblyName>NSystem.Data.MoonPdf.Wpf</AssemblyName>
 		<RootNamespace>System.Data.MoonPdf.Wpf</RootNamespace>
@@ -25,7 +25,7 @@
 		<RepositoryUrl>https://gitee.com/erikzhouxin/nmoonpdf</RepositoryUrl>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|net4'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|net40'">
 		<DefineConstants>TRACE;DEBUG;NETFrame;NET40</DefineConstants>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|net45'">
@@ -43,7 +43,7 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Debug|net6.0-windows'">
 		<DefineConstants>TRACE;DEBUG;NET60</DefineConstants>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net4'">
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net40'">
 		<DefineConstants>TRACE;NETFrame;NET40</DefineConstants>
 	</PropertyGroup>
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net45'">
@@ -58,7 +58,7 @@
 	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)'=='Release|net6.0-windows'">
 		<DefineConstants>TRACE;NET60</DefineConstants>
 	</PropertyGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net4'">
+	<ItemGroup Condition="'$(TargetFramework)' == 'net40'">
 	</ItemGroup>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net45'">
 	</ItemGroup>

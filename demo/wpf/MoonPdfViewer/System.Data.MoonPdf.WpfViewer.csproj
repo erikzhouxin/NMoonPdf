@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net4</TargetFramework>
+		<TargetFramework>net40</TargetFramework>
 		<UseWPF>true</UseWPF>
 		<LangVersion>latest</LangVersion>
 		<PlatformTarget>x86</PlatformTarget>
